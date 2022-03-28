@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039A586527F1BEC400C59161 /* CloudKit.framework */; };
 		03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB027F19DBD0004C619 /* AppDelegate.swift */; };
 		03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB227F19DBD0004C619 /* SceneDelegate.swift */; };
 		03F67EB827F19DBD0004C619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F67EB627F19DBD0004C619 /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		039A586327F1BE4000C59161 /* ShiftsManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShiftsManager.entitlements; sourceTree = "<group>"; };
+		039A586527F1BEC400C59161 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		03F67EAD27F19DBD0004C619 /* ShiftsManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftsManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F67EB027F19DBD0004C619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03F67EB227F19DBD0004C619 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +36,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		039A586427F1BEC400C59161 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				039A586527F1BEC400C59161 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		03F67EA427F19DBD0004C619 = {
 			isa = PBXGroup;
 			children = (
 				03F67EAF27F19DBD0004C619 /* ShiftsManager */,
 				03F67EAE27F19DBD0004C619 /* Products */,
+				039A586427F1BEC400C59161 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +71,7 @@
 		03F67EAF27F19DBD0004C619 /* ShiftsManager */ = {
 			isa = PBXGroup;
 			children = (
+				039A586327F1BE4000C59161 /* ShiftsManager.entitlements */,
 				03F67EB027F19DBD0004C619 /* AppDelegate.swift */,
 				03F67EB227F19DBD0004C619 /* SceneDelegate.swift */,
 				03F67EC927F19E5C0004C619 /* Controller */,
@@ -345,6 +359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ShiftsManager/ShiftsManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B474885AG5;
@@ -374,6 +389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ShiftsManager/ShiftsManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B474885AG5;

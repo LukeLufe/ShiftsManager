@@ -45,6 +45,14 @@ class CoreDataManager {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        // 同步雲端
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        do {
+              try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+             fatalError("Failed to pin viewContext to the current generation:\(error)")
+        }
         return container
     }()
 
