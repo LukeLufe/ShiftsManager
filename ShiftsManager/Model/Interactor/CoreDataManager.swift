@@ -45,7 +45,6 @@ class CoreDataManager {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        // 同步雲端
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         do {
