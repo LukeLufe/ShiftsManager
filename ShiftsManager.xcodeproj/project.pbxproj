@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039A586527F1BEC400C59161 /* CloudKit.framework */; };
 		039AB07E27F3070A00E3E561 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB07C27F3070A00E3E561 /* Staff.swift */; };
+		03D7271227F5D8C6004C2F9E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7271127F5D8C6004C2F9E /* MainViewController.swift */; };
 		03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB027F19DBD0004C619 /* AppDelegate.swift */; };
 		03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB227F19DBD0004C619 /* SceneDelegate.swift */; };
 		03F67EB827F19DBD0004C619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F67EB627F19DBD0004C619 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		039A586327F1BE4000C59161 /* ShiftsManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShiftsManager.entitlements; sourceTree = "<group>"; };
 		039A586527F1BEC400C59161 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		039AB07C27F3070A00E3E561 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		03D7271127F5D8C6004C2F9E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		03F67EAD27F19DBD0004C619 /* ShiftsManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftsManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F67EB027F19DBD0004C619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03F67EB227F19DBD0004C619 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		03F67EC927F19E5C0004C619 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				03D7271127F5D8C6004C2F9E /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */,
 				03F67EBB27F19DBD0004C619 /* ShiftsManager.xcdatamodeld in Sources */,
 				03F67ECF27F19FB40004C619 /* CoreDataManager.swift in Sources */,
+				03D7271227F5D8C6004C2F9E /* MainViewController.swift in Sources */,
 				039AB07E27F3070A00E3E561 /* Staff.swift in Sources */,
 				03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */,
 			);
