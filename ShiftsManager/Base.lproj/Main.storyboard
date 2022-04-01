@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wga-gI-sLF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7pC-nW-TZb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Aq2-TU-e12">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Aq2-TU-e12">
+                                <rect key="frame" x="16" y="44" width="343" height="543"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wig-Dy-zIR">
                                     <size key="itemSize" width="128" height="128"/>
@@ -44,25 +44,47 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QXs-g5-v2p"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Aq2-TU-e12" firstAttribute="trailing" secondItem="QXs-g5-v2p" secondAttribute="trailing" id="0mj-9T-OVT"/>
-                            <constraint firstItem="Aq2-TU-e12" firstAttribute="bottom" secondItem="QXs-g5-v2p" secondAttribute="bottom" id="U3D-6I-bBk"/>
+                            <constraint firstItem="QXs-g5-v2p" firstAttribute="trailing" secondItem="Aq2-TU-e12" secondAttribute="trailing" constant="16" id="ZtB-3N-pYl"/>
                             <constraint firstItem="Aq2-TU-e12" firstAttribute="top" secondItem="QXs-g5-v2p" secondAttribute="top" id="bhp-qd-qmi"/>
-                            <constraint firstItem="Aq2-TU-e12" firstAttribute="leading" secondItem="QXs-g5-v2p" secondAttribute="leading" id="ud9-VO-5kI"/>
+                            <constraint firstItem="QXs-g5-v2p" firstAttribute="bottom" secondItem="Aq2-TU-e12" secondAttribute="bottom" constant="80" id="qSy-6e-67g"/>
+                            <constraint firstItem="Aq2-TU-e12" firstAttribute="leading" secondItem="QXs-g5-v2p" secondAttribute="leading" constant="16" id="ud9-VO-5kI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Oes-Va-Xio"/>
                     <connections>
                         <outlet property="collectionView" destination="Aq2-TU-e12" id="PBs-YF-TZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epL-cH-fQY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1244" y="-31.03448275862069"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Qzh-4M-2xe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7pC-nW-TZb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ttH-vW-hPb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Wga-gI-sLF" kind="relationship" relationship="rootViewController" id="sAL-Os-HEE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQw-o9-qC6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="304.80000000000001" y="-31.03448275862069"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
