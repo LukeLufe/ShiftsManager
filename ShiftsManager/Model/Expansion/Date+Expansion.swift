@@ -18,4 +18,12 @@ extension Date {
         return today == parameterDate
     }
     
+    static func dayOfMonth(year: Int , month: Int) -> (monthRange: Int, weekday: Int) {
+        let dateComponents = DateComponents(year: year , month: month)
+        let date = Calendar.current.date(from: dateComponents) ?? Date()
+        let range = Calendar.current.range(of: .day, in: .month, for: date)
+        let weekday = Calendar.current.component(.weekday, from: date)
+        return (range?.count ?? 0, weekday - 1)
+    }
+    
 }
