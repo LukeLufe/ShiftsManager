@@ -9,6 +9,9 @@ import UIKit
 
 class CalenderCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateView: UIView!
+    
     var isFirstCell = false
     var lineHorizontalWidth = 0.6
     var lineVerticalWidth = 1.0
@@ -16,6 +19,7 @@ class CalenderCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        dateLabel.adjustsFontSizeToFitWidth = true
     }
     
     override func draw(_ rect: CGRect) {

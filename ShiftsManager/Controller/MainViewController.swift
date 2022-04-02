@@ -11,7 +11,12 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var selectRowIndex = 0
+    var currentYear = Calendar.current.component(.year, from: Date())
+    var currentMonth = Calendar.current.component(.month, from: Date())
+    var oldPage = 1
+    var beginScrollPage = false
+    var selectRowIndex: Int?
+    let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     let weekNumber = 7
     let monthNumber = 49
@@ -25,7 +30,8 @@ class MainViewController: UIViewController {
     private func configCollectionView() {
         collectionView.isScrollEnabled = false
         collectionView.collectionViewLayout = generateLayout()
-        collectionView.scrollToItem(at: IndexPath(row: 50, section: 0), at: .left, animated: false)
+        collectionView.scrollToItem(at: IndexPath(row: monthNumber + 1, section: 0), at: .left, animated: false)
+        beginScrollPage = true
     }
     
     // MARK: - Regist Cell
@@ -60,8 +66,48 @@ class MainViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: monthGroup)
         section.orthogonalScrollingBehavior = .paging
+        section.visibleItemsInvalidationHandler = sectionVisibleItemsInvalidationHandler
+        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+    
+    // MARK: - Scroll Section Hadler
+    
+    private func sectionVisibleItemsInvalidationHandler(visibleItems: [NSCollectionLayoutVisibleItem], scrollOffset: CGPoint,
+                                                        layoutEnvironment: NSCollectionLayoutEnvironment) {
+        if let newPage = Int(exactly: scrollOffset.x / collectionView.bounds.width), beginScrollPage {
+            if newPage > oldPage {
+                currentMonth += (newPage - oldPage)
+                if currentMonth > 12 {
+                    currentMonth = 1
+                    currentYear += 1
+                }
+                if newPage == 4 {
+                    oldPage = 1
+                    collectionView.scrollToItem(at: IndexPath(row: monthNumber + 1, section: 0), at: .left, animated: false)
+                    collectionView.reloadData()
+                } else {
+                    oldPage = newPage
+                }
+                selectRowIndex = nil
+            } else if newPage < oldPage {
+                currentMonth -= (oldPage - newPage)
+                if currentMonth < 1 {
+                    currentMonth = 12
+                    currentYear -= 1
+                }
+                if newPage == 0 {
+                    oldPage = 3
+                    collectionView.scrollToItem(at: IndexPath(row: monthNumber * 3 + 1, section: 0), at: .left, animated: false)
+                    collectionView.reloadData()
+                } else {
+                    oldPage = newPage
+                }
+                selectRowIndex = nil
+            }
+            title = "\(monthName[currentMonth - 1]) \(currentYear)"
+        }
     }
     
 }
@@ -69,21 +115,34 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 147
+        return monthNumber * 5
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let monthIndex = indexPath.row % monthNumber
         if let cell = cell as? WeekCollectionViewCell, monthIndex < weekName.count {
             cell.titleLabel.text = weekName[monthIndex]
+            if indexPath.row % weekNumber == 0 {
+                cell.titleLabel.textColor = .systemRed
+            } else if indexPath.row % weekNumber == 6 {
+                cell.titleLabel.textColor = .systemGreen
+            } else {
+                cell.titleLabel.textColor = .black
+            }
         } else if let cell = cell as? CalenderCollectionViewCell {
             if indexPath.row % weekNumber == 0 {
                 cell.isFirstCell = true
+                cell.dateLabel.textColor = .systemRed
+            } else if indexPath.row % weekNumber == 6 {
+                cell.isFirstCell = false
+                cell.dateLabel.textColor = .systemGreen
             } else {
                 cell.isFirstCell = false
+                cell.dateLabel.textColor = .black
             }
             cell.setNeedsDisplay()
-            didSelectCell(cell, at: indexPath)
+            confirmSelectCell(cell, at: indexPath)
+            configCellDate(cell, at: indexPath)
         }
     }
     
@@ -97,7 +156,7 @@ extension MainViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func didSelectCell(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
+    private func confirmSelectCell(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
         if indexPath.row == selectRowIndex {
             UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0.0) {
                 cell.contentView.layer.borderColor = UIColor.systemBlue.cgColor
@@ -106,6 +165,40 @@ extension MainViewController: UICollectionViewDataSource {
         } else {
             cell.contentView.layer.borderColor = nil
             cell.contentView.layer.borderWidth = 0
+        }
+    }
+    
+    private func dayOfMonth(year: Int , month: Int) -> (monthRange: Int, weekday: Int) {
+        let dateComponents = DateComponents(year: year , month: month)
+        let date = Calendar.current.date(from: dateComponents) ?? Date()
+        let range = Calendar.current.range(of: .day, in: .month, for: date)
+        let weekday = Calendar.current.component(.weekday, from: date)
+        return (range?.count ?? 0, weekday - 1)
+    }
+
+    private func configCellDate(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
+        guard let cell = cell as? CalenderCollectionViewCell else {
+            return
+        }
+        let page = indexPath.row / monthNumber
+        let dayOfMonthInfo = dayOfMonth(year: currentYear, month: (currentMonth + page - oldPage))
+        let dayOfLastMonthInfo = dayOfMonth(year: currentYear, month: (currentMonth + page - oldPage - 1))
+        let index = indexPath.row % monthNumber
+        cell.dateView.backgroundColor = nil
+        if index < (dayOfMonthInfo.weekday + 7) {
+            cell.dateLabel.text = "\(index + dayOfLastMonthInfo.monthRange - dayOfMonthInfo.weekday - 6)"
+            cell.dateLabel.alpha = 0.2
+        } else if index < (dayOfMonthInfo.monthRange + 7 + dayOfMonthInfo.weekday) {
+            cell.dateLabel.text = "\(index - dayOfMonthInfo.weekday - 6)"
+            cell.dateLabel.alpha = 1.0
+            if Date.confirmToday(year: currentYear, month: (currentMonth + page - oldPage),
+                                 day: Int(cell.dateLabel.text ?? "0") ?? 0) {
+                cell.dateView.backgroundColor = .systemCyan
+                cell.dateLabel.textColor = .white
+            }
+        } else {
+            cell.dateLabel.text = "\(index - dayOfMonthInfo.monthRange - dayOfMonthInfo.weekday - 6)"
+            cell.dateLabel.alpha = 0.2
         }
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333153927F85EB300522DB3 /* Date+Expansion.swift */; };
 		039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039A586527F1BEC400C59161 /* CloudKit.framework */; };
 		039AB07E27F3070A00E3E561 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB07C27F3070A00E3E561 /* Staff.swift */; };
 		039BE71527F7359F00DE61AB /* CalenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BE71327F7359F00DE61AB /* CalenderCollectionViewCell.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0333153927F85EB300522DB3 /* Date+Expansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Expansion.swift"; sourceTree = "<group>"; };
 		039A586327F1BE4000C59161 /* ShiftsManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShiftsManager.entitlements; sourceTree = "<group>"; };
 		039A586527F1BEC400C59161 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		039AB07C27F3070A00E3E561 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		03F67ECD27F19EFB0004C619 /* Expansion */ = {
 			isa = PBXGroup;
 			children = (
+				0333153927F85EB300522DB3 /* Date+Expansion.swift */,
 			);
 			path = Expansion;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				039BE71527F7359F00DE61AB /* CalenderCollectionViewCell.swift in Sources */,
+				0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */,
 				039BE71927F7364000DE61AB /* Constant.swift in Sources */,
 				03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */,
 				03F67EBB27F19DBD0004C619 /* ShiftsManager.xcdatamodeld in Sources */,
@@ -342,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -396,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -422,7 +426,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +456,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
