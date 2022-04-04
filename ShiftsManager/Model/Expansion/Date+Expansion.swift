@@ -9,12 +9,12 @@ import Foundation
 
 extension Date {
     
-    static func confirmToday(year: Int, month: Int, day: Int) -> Bool {
+    static func confirmToday(date: Date) -> Bool {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
         formatter.dateFormat = "yyyy-M-d"
         let today = formatter.string(from: Date())
-        let parameterDate = "\(year)-\(month)-\(day)"
+        let parameterDate = formatter.string(from: date)
         return today == parameterDate
     }
     
@@ -24,6 +24,20 @@ extension Date {
         let range = Calendar.current.range(of: .day, in: .month, for: date)
         let weekday = Calendar.current.component(.weekday, from: date)
         return (range?.count ?? 0, weekday - 1)
+    }
+    
+    func toString() -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+        formatter.dateFormat = "yyyy-M-d"
+        return formatter.string(from: self)
+    }
+    
+    func toDayString() -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+        formatter.dateFormat = "d"
+        return formatter.string(from: self)
     }
     
 }

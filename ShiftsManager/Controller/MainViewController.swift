@@ -11,8 +11,11 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var currentYear = Calendar.current.component(.year, from: Date())
-    var currentMonth = Calendar.current.component(.month, from: Date())
+    // MARK: - Data
+    
+    var dateData = [DisplayDate]()
+    var pageYear = Calendar.current.component(.year, from: Date())
+    var pageMonth = Calendar.current.component(.month, from: Date())
     var oldPage = 1
     var beginScrollPage = false
     var selectRowIndex: Int?
@@ -22,8 +25,11 @@ class MainViewController: UIViewController {
     let weekNumber = 7
     let monthNumber = 49
     
+    // MARK: - ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateData = configDateData(forYear: pageYear, currentMonth: pageMonth)
         registCell()
         configCollectionView()
     }
@@ -77,36 +83,21 @@ class MainViewController: UIViewController {
     
     private func sectionVisibleItemsInvalidationHandler(visibleItems: [NSCollectionLayoutVisibleItem], scrollOffset: CGPoint,
                                                         layoutEnvironment: NSCollectionLayoutEnvironment) {
-        if let newPage = Int(exactly: scrollOffset.x / collectionView.bounds.width), beginScrollPage {
-            if newPage > oldPage {
-                currentMonth += (newPage - oldPage)
-                if currentMonth > 12 {
-                    currentMonth = 1
-                    currentYear += 1
-                }
-                if newPage == 4 {
-                    collectionViewScrollToPage(1)
-                    collectionView.reloadData()
-                } else {
-                    oldPage = newPage
-                }
-                selectRowIndex = nil
-            } else if newPage < oldPage {
-                currentMonth -= (oldPage - newPage)
-                if currentMonth < 1 {
-                    currentMonth = 12
-                    currentYear -= 1
-                }
-                if newPage == 0 {
-                    collectionViewScrollToPage(3)
-                    collectionView.reloadData()
-                } else {
-                    oldPage = newPage
-                }
-                selectRowIndex = nil
+        if let newPage = Int(exactly: scrollOffset.x / collectionView.bounds.width), beginScrollPage, newPage != oldPage {
+            pageMonth += newPage - oldPage
+            if pageMonth > 12 {
+                pageMonth = 1
+                pageYear += 1
+            } else if pageMonth < 1 {
+                pageMonth = 12
+                pageYear -= 1
             }
-            title = "\(monthName[currentMonth - 1]) \(currentYear)"
+            dateData = configDateData(forYear: pageYear, currentMonth: pageMonth)
+            collectionViewScrollToPage(1)
+            collectionView.reloadData()
+            selectRowIndex = nil
         }
+        title = "\(monthName[pageMonth - 1]) \(pageYear)"
     }
     
     private func collectionViewScrollToPage(_ page: Int) {
@@ -114,18 +105,68 @@ class MainViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(row: monthNumber * page + 1, section: 0), at: .left, animated: false)
     }
     
+    // MARK: Config Date Data
+    
+    private func configDateData(forYear currentYear: Int, currentMonth: Int, monthNumber: Int = 49) -> [DisplayDate] {
+        var newDateData = [DisplayDate]()
+        for page in 0...2 {
+            let pageMonth = currentMonth + page - 1
+            let dayOfMonthInfo = Date.dayOfMonth(year: currentYear, month: pageMonth)
+            let dayOfLastMonthInfo = Date.dayOfMonth(year: currentYear, month: pageMonth - 1)
+            for index in 0..<monthNumber {
+                if index < 7 {
+                    let displayDate = DisplayDate(date: Date())
+                    newDateData.append(displayDate)
+                } else {
+                    let dateComponents: DateComponents
+                    let isPageMonth: Bool
+                    if index < (dayOfMonthInfo.weekday + 7) {
+                        let day = index + dayOfLastMonthInfo.monthRange - dayOfMonthInfo.weekday - 6
+                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
+                                                        year: currentYear, month: pageMonth - 1, day: day)
+                        isPageMonth = false
+                    } else if index < (dayOfMonthInfo.monthRange + 7 + dayOfMonthInfo.weekday) {
+                        let day = index - dayOfMonthInfo.weekday - 6
+                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
+                                                        year: currentYear, month: pageMonth, day: day)
+                        isPageMonth = true
+                    } else {
+                        let day = index - dayOfMonthInfo.monthRange - dayOfMonthInfo.weekday - 6
+                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
+                                                        year: currentYear, month: pageMonth + 1, day: day)
+                        isPageMonth = false
+                    }
+                    let date = Calendar.current.date(from: dateComponents) ?? Date()
+                    let displayDate = DisplayDate(date: date, isPageMonth: isPageMonth)
+                    newDateData.append(displayDate)
+                }
+            }
+        }
+        return newDateData
+    }
+    
 }
 
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return monthNumber * 5
+        return dateData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: UICollectionViewCell
+        if (indexPath.row % monthNumber) < weekNumber {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellWeekId, for: indexPath)
+        } else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellCalenderId, for: indexPath)
+        }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let monthIndex = indexPath.row % monthNumber
-        if let cell = cell as? WeekCollectionViewCell, monthIndex < weekName.count {
-            cell.titleLabel.text = weekName[monthIndex]
+        let dateIndex = indexPath.row % monthNumber
+        if let cell = cell as? WeekCollectionViewCell, dateIndex < weekName.count {
+            cell.titleLabel.text = weekName[dateIndex]
             if indexPath.row % weekNumber == 0 {
                 cell.titleLabel.textColor = .systemRed
             } else if indexPath.row % weekNumber == 6 {
@@ -146,18 +187,13 @@ extension MainViewController: UICollectionViewDataSource {
             }
             cell.setNeedsDisplay()
             confirmSelectCell(cell, at: indexPath)
-            configCellDate(cell, at: indexPath)
+            
+            let displayeDate = dateData[indexPath.row]
+            cell.dateLabel.text = "\(displayeDate.date.toDayString())"
+            cell.dateLabel.alpha = displayeDate.isPageMonth ? 1.0 : 0.2
+            cell.dateView.backgroundColor = Date.confirmToday(date: displayeDate.date) ? .systemCyan : nil
+            cell.dateLabel.textColor = Date.confirmToday(date: displayeDate.date) ? .white : .black
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell
-        if (indexPath.row % monthNumber) < weekNumber {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellWeekId, for: indexPath)
-        } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellCalenderId, for: indexPath)
-        }
-        return cell
     }
     
     private func confirmSelectCell(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
@@ -171,33 +207,6 @@ extension MainViewController: UICollectionViewDataSource {
             cell.contentView.layer.borderWidth = 0
         }
     }
-
-    private func configCellDate(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
-        guard let cell = cell as? CalenderCollectionViewCell else {
-            return
-        }
-        let page = indexPath.row / monthNumber
-        let dayOfMonthInfo = Date.dayOfMonth(year: currentYear, month: (currentMonth + page - oldPage))
-        let dayOfLastMonthInfo = Date.dayOfMonth(year: currentYear, month: (currentMonth + page - oldPage - 1))
-        let index = indexPath.row % monthNumber
-        cell.dateView.backgroundColor = nil
-        if index < (dayOfMonthInfo.weekday + 7) {
-            cell.dateLabel.text = "\(index + dayOfLastMonthInfo.monthRange - dayOfMonthInfo.weekday - 6)"
-            cell.dateLabel.alpha = 0.2
-        } else if index < (dayOfMonthInfo.monthRange + 7 + dayOfMonthInfo.weekday) {
-            let day = index - dayOfMonthInfo.weekday - 6
-            cell.dateLabel.text = "\(day)"
-            cell.dateLabel.alpha = 1.0
-            if Date.confirmToday(year: currentYear, month: (currentMonth + page - oldPage),
-                                 day: day) {
-                cell.dateView.backgroundColor = .systemCyan
-                cell.dateLabel.textColor = .white
-            }
-        } else {
-            cell.dateLabel.text = "\(index - dayOfMonthInfo.monthRange - dayOfMonthInfo.weekday - 6)"
-            cell.dateLabel.alpha = 0.2
-        }
-    }
     
 }
 
@@ -206,6 +215,17 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectRowIndex = indexPath.row
         collectionView.reloadData()
+        
+        // test
+        didSelectDate(didSelectItemAt: indexPath)
     }
     
+    func didSelectDate(didSelectItemAt indexPath: IndexPath) {
+        let displayeDate = dateData[indexPath.row]
+        let alert = UIAlertController(title: "測試日期", message: "\(displayeDate.date.toString())", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "確定", style: .default)
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+
 }

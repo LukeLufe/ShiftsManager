@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -39,12 +38,21 @@
                                     <constraint firstItem="F0H-DG-zcw" firstAttribute="top" secondItem="KuQ-KV-lDF" secondAttribute="top" id="wYb-5l-x4l"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zok-GS-g8M">
+                                <rect key="frame" x="8" y="32.5" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="KuQ-KV-lDF" firstAttribute="height" secondItem="9C7-Ht-SWK" secondAttribute="height" multiplier="0.2" id="5VY-eW-fUS"/>
                             <constraint firstAttribute="trailing" secondItem="KuQ-KV-lDF" secondAttribute="trailing" constant="2" id="6MF-I1-XVK"/>
                             <constraint firstItem="KuQ-KV-lDF" firstAttribute="leading" secondItem="9C7-Ht-SWK" secondAttribute="leading" constant="2" id="EMR-ba-lwv"/>
+                            <constraint firstItem="Zok-GS-g8M" firstAttribute="top" secondItem="KuQ-KV-lDF" secondAttribute="bottom" constant="8" id="VUO-l1-HaS"/>
+                            <constraint firstItem="Zok-GS-g8M" firstAttribute="leading" secondItem="9C7-Ht-SWK" secondAttribute="leading" constant="8" id="bNH-7L-CNI"/>
                             <constraint firstItem="KuQ-KV-lDF" firstAttribute="top" secondItem="9C7-Ht-SWK" secondAttribute="top" constant="2" id="bNU-c0-yLV"/>
+                            <constraint firstAttribute="trailing" secondItem="Zok-GS-g8M" secondAttribute="trailing" constant="8" id="rab-rL-92Z"/>
                             <constraint firstAttribute="height" constant="113" id="xpE-SX-V3G"/>
                         </constraints>
                     </view>
@@ -61,6 +69,7 @@
             <connections>
                 <outlet property="dateLabel" destination="F0H-DG-zcw" id="W13-Nf-0JE"/>
                 <outlet property="dateView" destination="KuQ-KV-lDF" id="Se2-e5-aSk"/>
+                <outlet property="shiftTypeLabel" destination="Zok-GS-g8M" id="5mA-bo-42e"/>
             </connections>
             <point key="canvasLocation" x="155.07246376811597" y="116.85267857142857"/>
         </collectionViewCell>

@@ -11,6 +11,7 @@ class CalenderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dateView: UIView!
+    @IBOutlet weak var shiftTypeLabel: UILabel!
     
     var isFirstCell = false
     var lineHorizontalWidth = 0.6
@@ -20,6 +21,7 @@ class CalenderCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         dateLabel.adjustsFontSizeToFitWidth = true
+        shiftTypeLabel.adjustsFontSizeToFitWidth = true
     }
     
     override func draw(_ rect: CGRect) {

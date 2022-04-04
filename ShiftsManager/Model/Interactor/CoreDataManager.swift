@@ -48,13 +48,13 @@ class CoreDataManager {
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         do {
-              try container.viewContext.setQueryGenerationFrom(.current)
+            try container.viewContext.setQueryGenerationFrom(.current)
         } catch {
-             fatalError("Failed to pin viewContext to the current generation:\(error)")
+            fatalError("Failed to pin viewContext to the current generation:\(error)")
         }
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
     
     func saveContext () {

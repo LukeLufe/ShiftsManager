@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333153927F85EB300522DB3 /* Date+Expansion.swift */; };
 		039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039A586527F1BEC400C59161 /* CloudKit.framework */; };
-		039AB07E27F3070A00E3E561 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB07C27F3070A00E3E561 /* Staff.swift */; };
 		039BE71527F7359F00DE61AB /* CalenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BE71327F7359F00DE61AB /* CalenderCollectionViewCell.swift */; };
 		039BE71627F7359F00DE61AB /* CalenderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039BE71427F7359F00DE61AB /* CalenderCollectionViewCell.xib */; };
 		039BE71927F7364000DE61AB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BE71827F7364000DE61AB /* Constant.swift */; };
 		039BE71D27F7453700DE61AB /* WeekCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BE71B27F7453700DE61AB /* WeekCollectionViewCell.swift */; };
 		039BE71E27F7453700DE61AB /* WeekCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039BE71C27F7453700DE61AB /* WeekCollectionViewCell.xib */; };
 		03D7271227F5D8C6004C2F9E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D7271127F5D8C6004C2F9E /* MainViewController.swift */; };
+		03DF5A5B27FB342D0076BE14 /* DisplayDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DF5A5A27FB342D0076BE14 /* DisplayDate.swift */; };
+		03E7B8DF27F9BC070044BD04 /* ShiftType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E7B8DB27F9BC070044BD04 /* ShiftType.swift */; };
+		03E7B8E127F9BC070044BD04 /* ShiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E7B8DD27F9BC070044BD04 /* ShiftDate.swift */; };
 		03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB027F19DBD0004C619 /* AppDelegate.swift */; };
 		03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F67EB227F19DBD0004C619 /* SceneDelegate.swift */; };
 		03F67EB827F19DBD0004C619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F67EB627F19DBD0004C619 /* Main.storyboard */; };
@@ -29,13 +31,15 @@
 		0333153927F85EB300522DB3 /* Date+Expansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Expansion.swift"; sourceTree = "<group>"; };
 		039A586327F1BE4000C59161 /* ShiftsManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShiftsManager.entitlements; sourceTree = "<group>"; };
 		039A586527F1BEC400C59161 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		039AB07C27F3070A00E3E561 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		039BE71327F7359F00DE61AB /* CalenderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionViewCell.swift; sourceTree = "<group>"; };
 		039BE71427F7359F00DE61AB /* CalenderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderCollectionViewCell.xib; sourceTree = "<group>"; };
 		039BE71827F7364000DE61AB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		039BE71B27F7453700DE61AB /* WeekCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionViewCell.swift; sourceTree = "<group>"; };
 		039BE71C27F7453700DE61AB /* WeekCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekCollectionViewCell.xib; sourceTree = "<group>"; };
 		03D7271127F5D8C6004C2F9E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		03DF5A5A27FB342D0076BE14 /* DisplayDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDate.swift; sourceTree = "<group>"; };
+		03E7B8DB27F9BC070044BD04 /* ShiftType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftType.swift; sourceTree = "<group>"; };
+		03E7B8DD27F9BC070044BD04 /* ShiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftDate.swift; sourceTree = "<group>"; };
 		03F67EAD27F19DBD0004C619 /* ShiftsManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftsManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F67EB027F19DBD0004C619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03F67EB227F19DBD0004C619 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +164,9 @@
 		03F67ECA27F19EB90004C619 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				039AB07C27F3070A00E3E561 /* Staff.swift */,
+				03E7B8DB27F9BC070044BD04 /* ShiftType.swift */,
+				03E7B8DD27F9BC070044BD04 /* ShiftDate.swift */,
+				03DF5A5A27FB342D0076BE14 /* DisplayDate.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -261,15 +267,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E7B8DF27F9BC070044BD04 /* ShiftType.swift in Sources */,
 				039BE71527F7359F00DE61AB /* CalenderCollectionViewCell.swift in Sources */,
+				03E7B8E127F9BC070044BD04 /* ShiftDate.swift in Sources */,
 				0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */,
+				03DF5A5B27FB342D0076BE14 /* DisplayDate.swift in Sources */,
 				039BE71927F7364000DE61AB /* Constant.swift in Sources */,
 				03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */,
 				03F67EBB27F19DBD0004C619 /* ShiftsManager.xcdatamodeld in Sources */,
 				03F67ECF27F19FB40004C619 /* CoreDataManager.swift in Sources */,
 				039BE71D27F7453700DE61AB /* WeekCollectionViewCell.swift in Sources */,
 				03D7271227F5D8C6004C2F9E /* MainViewController.swift in Sources */,
-				039AB07E27F3070A00E3E561 /* Staff.swift in Sources */,
 				03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
