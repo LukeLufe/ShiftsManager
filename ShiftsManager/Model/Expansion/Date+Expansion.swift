@@ -26,6 +26,11 @@ extension Date {
         return (range?.count ?? 0, weekday - 1)
     }
     
+    static func date(FromComponents year: Int, month: Int, day: Int) -> Date {
+        let dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"), year: year, month: month, day: day)
+        return Calendar.current.date(from: dateComponents) ?? Date()
+    }
+    
     func toString() -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Taipei")

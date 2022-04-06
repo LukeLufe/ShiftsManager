@@ -118,25 +118,21 @@ class MainViewController: UIViewController {
                     let displayDate = DisplayDate(date: Date())
                     newDateData.append(displayDate)
                 } else {
-                    let dateComponents: DateComponents
+                    let date: Date
                     let isPageMonth: Bool
                     if index < (dayOfMonthInfo.weekday + 7) {
                         let day = index + dayOfLastMonthInfo.monthRange - dayOfMonthInfo.weekday - 6
-                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
-                                                        year: currentYear, month: pageMonth - 1, day: day)
+                        date = Date.date(FromComponents: currentYear, month: pageMonth - 1, day: day)
                         isPageMonth = false
                     } else if index < (dayOfMonthInfo.monthRange + 7 + dayOfMonthInfo.weekday) {
                         let day = index - dayOfMonthInfo.weekday - 6
-                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
-                                                        year: currentYear, month: pageMonth, day: day)
+                        date = Date.date(FromComponents: currentYear, month: pageMonth, day: day)
                         isPageMonth = true
                     } else {
                         let day = index - dayOfMonthInfo.monthRange - dayOfMonthInfo.weekday - 6
-                        dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"),
-                                                        year: currentYear, month: pageMonth + 1, day: day)
+                        date = Date.date(FromComponents: currentYear, month: pageMonth + 1, day: day)
                         isPageMonth = false
                     }
-                    let date = Calendar.current.date(from: dateComponents) ?? Date()
                     let displayDate = DisplayDate(date: date, isPageMonth: isPageMonth)
                     newDateData.append(displayDate)
                 }
