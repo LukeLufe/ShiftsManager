@@ -11,5 +11,12 @@ struct NibName {
     
     static let calenderCollectionViewCell = "CalenderCollectionViewCell"
     static let weekCollectionViewCell = "WeekCollectionViewCell"
+    static let addShiftTypeTableViewCell = "AddShiftTypeTableViewCell"
+    
+}
+
+struct StoryboardId {
+    
+    static let addShiftTypeVc = "AddShiftTypeVc"
     
 }

@@ -16,15 +16,15 @@ public class ShiftType: NSManagedObject {
         return NSFetchRequest<ShiftType>(entityName: "ShiftType")
     }
 
-    @NSManaged public var endHour: Int16
-    @NSManaged public var endMinute: Int16
-    @NSManaged public var hourlyRate: Float
     @NSManaged public var id: String?
     @NSManaged public var name: String?
-    @NSManaged public var remark: String?
-    @NSManaged public var restMinute: Int16
     @NSManaged public var startHour: Int16
     @NSManaged public var startMinute: Int16
+    @NSManaged public var endHour: Int16
+    @NSManaged public var endMinute: Int16
+    @NSManaged public var restMinute: Int16
+    @NSManaged public var hourlyRate: Float
+    @NSManaged public var remark: String?
 
 }
 

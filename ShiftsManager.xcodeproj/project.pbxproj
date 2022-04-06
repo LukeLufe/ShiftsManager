@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0309CFB527FDE2C600DC46B7 /* AddShiftTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309CFB427FDE2C600DC46B7 /* AddShiftTypeViewController.swift */; };
+		0309CFB827FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309CFB627FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.swift */; };
+		0309CFB927FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0309CFB727FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.xib */; };
+		0309CFBC27FDED0100DC46B7 /* MainViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0309CFBB27FDED0100DC46B7 /* MainViewController+UICollectionView.swift */; };
 		0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333153927F85EB300522DB3 /* Date+Expansion.swift */; };
 		039A586627F1BEC400C59161 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039A586527F1BEC400C59161 /* CloudKit.framework */; };
 		039BE71527F7359F00DE61AB /* CalenderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039BE71327F7359F00DE61AB /* CalenderCollectionViewCell.swift */; };
@@ -28,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0309CFB427FDE2C600DC46B7 /* AddShiftTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShiftTypeViewController.swift; sourceTree = "<group>"; };
+		0309CFB627FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShiftTypeTableViewCell.swift; sourceTree = "<group>"; };
+		0309CFB727FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddShiftTypeTableViewCell.xib; sourceTree = "<group>"; };
+		0309CFBB27FDED0100DC46B7 /* MainViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+UICollectionView.swift"; sourceTree = "<group>"; };
 		0333153927F85EB300522DB3 /* Date+Expansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Expansion.swift"; sourceTree = "<group>"; };
 		039A586327F1BE4000C59161 /* ShiftsManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShiftsManager.entitlements; sourceTree = "<group>"; };
 		039A586527F1BEC400C59161 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -63,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0309CFBA27FDEA2E00DC46B7 /* AddShiftTypeCell */ = {
+			isa = PBXGroup;
+			children = (
+				0309CFB627FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.swift */,
+				0309CFB727FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.xib */,
+			);
+			path = AddShiftTypeCell;
+			sourceTree = "<group>";
+		};
 		039A586427F1BEC400C59161 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +163,7 @@
 		03F67EC827F19E560004C619 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0309CFBA27FDEA2E00DC46B7 /* AddShiftTypeCell */,
 				039BE71A27F7451F00DE61AB /* WeekCell */,
 				039BE71727F735A400DE61AB /* CalenderCell */,
 				039BE71027F6FD4D00DE61AB /* Expansion */,
@@ -157,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				03D7271127F5D8C6004C2F9E /* MainViewController.swift */,
+				0309CFBB27FDED0100DC46B7 /* MainViewController+UICollectionView.swift */,
+				0309CFB427FDE2C600DC46B7 /* AddShiftTypeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,6 +274,7 @@
 			files = (
 				039BE71627F7359F00DE61AB /* CalenderCollectionViewCell.xib in Resources */,
 				03F67EC027F19DBD0004C619 /* LaunchScreen.storyboard in Resources */,
+				0309CFB927FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.xib in Resources */,
 				03F67EBD27F19DBD0004C619 /* Assets.xcassets in Resources */,
 				039BE71E27F7453700DE61AB /* WeekCollectionViewCell.xib in Resources */,
 				03F67EB827F19DBD0004C619 /* Main.storyboard in Resources */,
@@ -272,13 +293,16 @@
 				03E7B8E127F9BC070044BD04 /* ShiftDate.swift in Sources */,
 				0333153A27F85EB300522DB3 /* Date+Expansion.swift in Sources */,
 				03DF5A5B27FB342D0076BE14 /* DisplayDate.swift in Sources */,
+				0309CFB527FDE2C600DC46B7 /* AddShiftTypeViewController.swift in Sources */,
 				039BE71927F7364000DE61AB /* Constant.swift in Sources */,
 				03F67EB127F19DBD0004C619 /* AppDelegate.swift in Sources */,
 				03F67EBB27F19DBD0004C619 /* ShiftsManager.xcdatamodeld in Sources */,
 				03F67ECF27F19FB40004C619 /* CoreDataManager.swift in Sources */,
+				0309CFB827FDE8AF00DC46B7 /* AddShiftTypeTableViewCell.swift in Sources */,
 				039BE71D27F7453700DE61AB /* WeekCollectionViewCell.swift in Sources */,
 				03D7271227F5D8C6004C2F9E /* MainViewController.swift in Sources */,
 				03F67EB327F19DBD0004C619 /* SceneDelegate.swift in Sources */,
+				0309CFBC27FDED0100DC46B7 /* MainViewController+UICollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
