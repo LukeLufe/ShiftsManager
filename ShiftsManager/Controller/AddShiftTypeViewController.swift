@@ -12,8 +12,11 @@ class AddShiftTypeViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    private var addShiftTypeCellItems = [AddShiftTypeCellItem]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configAddShiftTypeCellItems()
         configBackgroundView()
         registCell()
     }
@@ -41,7 +44,7 @@ class AddShiftTypeViewController: UIViewController {
 extension AddShiftTypeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return addShiftTypeCellItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,12 +52,106 @@ extension AddShiftTypeViewController: UITableViewDataSource {
         guard let cell = cell as? AddShiftTypeTableViewCell else {
             return cell
         }
-        cell.shiftTypeButton.setTitle("測試", for: .normal)
+        cell.delegate = self
+        cell.shiftTypeButton.tag = indexPath.row
+        cell.shiftTypeButton.setTitle(addShiftTypeCellItems[indexPath.row].title, for: .normal)
         return cell
     }
     
 }
 
 extension AddShiftTypeViewController: UITableViewDelegate {
+    
+}
+
+extension AddShiftTypeViewController: AddShiftTypeTableViewCellDelegate {
+    
+    func didShiftTypeBtnPressed(_ sender: UIButton) {
+        addShiftTypeCellItems[sender.tag].handler()
+    }
+    
+}
+
+extension AddShiftTypeViewController {
+    
+    private func configAddShiftTypeCellItems() {
+        var addShiftTypeCellItem = AddShiftTypeCellItem(title: "班別名稱", imageName: "") {
+            self.presentAlertTextField(title: "班別名稱", placeholder: "請輸入班別名稱") { [weak self] text in
+                guard let text = text else {
+                    return
+                }
+                self?.addShiftTypeCellItems[0].title = text
+                self?.tableView.reloadData()
+            }
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+        addShiftTypeCellItem = AddShiftTypeCellItem(title: "開始時間", imageName: "") {
+            
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+        addShiftTypeCellItem = AddShiftTypeCellItem(title: "結束時間", imageName: "") {
+            
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+        addShiftTypeCellItem = AddShiftTypeCellItem(title: "休息時間", imageName: "") {
+            self.presentAlertTextField(title: "休息時間", message: "分鐘為單位",
+                                       placeholder: "請輸入休息時間", keyboardType: .numberPad) {
+                [weak self] text in
+                guard let text = text else {
+                    return
+                }
+                self?.addShiftTypeCellItems[3].title = text
+                self?.tableView.reloadData()
+            }
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+        addShiftTypeCellItem = AddShiftTypeCellItem(title: "時薪", imageName: "") {
+            self.presentAlertTextField(title: "時薪", placeholder: "請輸入時薪", keyboardType: .decimalPad) {
+                [weak self] text in
+                guard let text = text else {
+                    return
+                }
+                self?.addShiftTypeCellItems[4].title = text
+                self?.tableView.reloadData()
+            }
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+        addShiftTypeCellItem = AddShiftTypeCellItem(title: "備註", imageName: "") {
+            self.presentAlertTextField(title: "備註", placeholder: "請輸入備註") { [weak self] text in
+                guard let text = text else {
+                    return
+                }
+                self?.addShiftTypeCellItems[5].title = text
+                self?.tableView.reloadData()
+            }
+        }
+        addShiftTypeCellItems.append(addShiftTypeCellItem)
+    }
+    
+    private func presentAlertTextField(title: String?, message: String? = nil, placeholder: String?,
+                                       keyboardType: UIKeyboardType = .default,
+                                       completion: @escaping (String?) -> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = placeholder
+            textField.keyboardType = keyboardType
+        }
+        let cancel = UIAlertAction(title: "取消", style: .cancel)
+        alert.addAction(cancel)
+        let ok = UIAlertAction(title: "確定", style: .default) { _ in
+            let text = alert.textFields?.first?.text
+            completion(text)
+        }
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
+}
+
+struct AddShiftTypeCellItem {
+    
+    var title: String
+    var imageName: String
+    var handler: () -> ()
     
 }
