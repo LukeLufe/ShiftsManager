@@ -15,6 +15,7 @@ protocol AddShiftTypeTableViewCellDelegate: AnyObject {
 
 class AddShiftTypeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var shiftTypeButton: UIButton!
     weak var delegate: AddShiftTypeTableViewCellDelegate?
     

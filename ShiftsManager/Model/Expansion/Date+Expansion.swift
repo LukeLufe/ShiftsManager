@@ -45,4 +45,33 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func toTimeString() -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+    
+    func toOClock() -> Date {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+        formatter.dateFormat = "HH:mm"
+        let dateArray = formatter.string(from: self).split(separator: ":").map {
+            String($0)
+        }
+        let finalDateStr = "\(dateArray.first ?? "00"):00"
+        return formatter.date(from: finalDateStr) ?? Date()
+    }
+    
+    func toHalfClock() -> Date {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Taipei")
+        formatter.dateFormat = "HH:mm"
+        let dateArray = formatter.string(from: self).split(separator: ":").map {
+            String($0)
+        }
+        let finalDateStr = "\(dateArray.first ?? "00"):30"
+        return formatter.date(from: finalDateStr) ?? Date()
+    }
+    
 }

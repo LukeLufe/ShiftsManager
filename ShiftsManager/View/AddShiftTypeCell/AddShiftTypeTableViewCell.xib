@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpD-Qj-a3A">
-                        <rect key="frame" x="16" y="19" width="288" height="103"/>
+                        <rect key="frame" x="16" y="32.5" width="288" height="97.5"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Button" cornerStyle="capsule">
                             <backgroundConfiguration key="background">
@@ -28,17 +28,26 @@
                             <action selector="shiftTypeBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hWa-Af-7BT"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYr-Hh-jtJ">
+                        <rect key="frame" x="16" y="8" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mpD-Qj-a3A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0xb-e6-DGD"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="mpD-Qj-a3A" secondAttribute="bottom" constant="8" id="4Rb-j1-Crb"/>
-                    <constraint firstItem="mpD-Qj-a3A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="TOr-eM-W5T"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mpD-Qj-a3A" secondAttribute="bottom" id="4Rb-j1-Crb"/>
+                    <constraint firstItem="FYr-Hh-jtJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BGb-OK-rQD"/>
+                    <constraint firstItem="FYr-Hh-jtJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Zd1-y3-ohs"/>
+                    <constraint firstItem="mpD-Qj-a3A" firstAttribute="top" secondItem="FYr-Hh-jtJ" secondAttribute="bottom" constant="4" id="eKh-7L-5NY"/>
                     <constraint firstItem="mpD-Qj-a3A" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="tq9-da-Qfd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="shiftTypeButton" destination="mpD-Qj-a3A" id="BpY-IT-CD0"/>
+                <outlet property="titleLabel" destination="FYr-Hh-jtJ" id="1yj-kN-8tg"/>
             </connections>
             <point key="canvasLocation" x="-39.130434782608695" y="-43.861607142857139"/>
         </tableViewCell>
