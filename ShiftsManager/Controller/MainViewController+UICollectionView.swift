@@ -52,7 +52,7 @@ extension MainViewController: UICollectionViewDataSource {
             cell.dateLabel.text = "\(displayeDate.date.toDayString())"
             cell.dateLabel.alpha = displayeDate.isPageMonth ? 1.0 : 0.2
             cell.dateView.backgroundColor = Date.confirmToday(date: displayeDate.date) ? .systemCyan : nil
-            cell.dateLabel.textColor = Date.confirmToday(date: displayeDate.date) ? .white : .black
+            cell.dateLabel.textColor = Date.confirmToday(date: displayeDate.date) ? .white : cell.dateLabel.textColor
         }
     }
     

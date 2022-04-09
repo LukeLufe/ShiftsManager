@@ -6,15 +6,13 @@
         <attribute name="typeId" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ShiftType" representedClassName=".ShiftType" syncable="YES">
-        <attribute name="endHour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="endMinute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hourlyRate" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="remark" optional="YES" attributeType="String"/>
         <attribute name="restMinute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startHour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startMinute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Staff" representedClassName=".Staff" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
@@ -23,7 +21,7 @@
     </entity>
     <elements>
         <element name="ShiftDate" positionX="-45" positionY="81" width="128" height="74"/>
-        <element name="ShiftType" positionX="-54" positionY="18" width="128" height="164"/>
+        <element name="ShiftType" positionX="-54" positionY="18" width="128" height="134"/>
         <element name="Staff" positionX="-54" positionY="-9" width="128" height="74"/>
     </elements>
 </model>

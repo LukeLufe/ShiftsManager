@@ -31,6 +31,11 @@ extension Date {
         return Calendar.current.date(from: dateComponents) ?? Date()
     }
     
+    static func date(FromComponents hour: Int, minute: Int) -> Date {
+        let dateComponents = DateComponents(timeZone: TimeZone(identifier: "Asia/Taipei"), hour: hour, minute: minute)
+        return Calendar.current.date(from: dateComponents) ?? Date()
+    }
+    
     func toString() -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Taipei")

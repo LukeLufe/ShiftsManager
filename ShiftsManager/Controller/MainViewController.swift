@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // MARK: - Data
+    // MARK: - Date Data
     
     var dateData = [DisplayDate]()
     var pageYear = Calendar.current.component(.year, from: Date())
@@ -25,10 +25,16 @@ class MainViewController: UIViewController {
     let weekNumber = 7
     let monthNumber = 49
     
+    // MARK: - Shift Data
+    
+    var shiftTypeData = [ShiftType]()
+    var shiftDateData = [ShiftDate]()
+    
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        readFromCoreData()
         dateData = configDateData(forYear: pageYear, currentMonth: pageMonth)
         registCell()
         configCollectionView()
@@ -41,12 +47,26 @@ class MainViewController: UIViewController {
         beginScrollPage = true
     }
     
+    // MARK: - Read CoreData
+    
+    private func readFromCoreData() {
+        let manager = CoreDataManager.shared
+        do {
+            shiftTypeData = try manager.read(fetchRequest: ShiftType.fetchRequest())
+            shiftDateData = try manager.read(fetchRequest: ShiftDate.fetchRequest())
+        } catch {
+            print("readFromCoreData: \(error)")
+        }
+    }
+    
     // MARK: - ToolBar Button
     
     @IBAction func addShiftTypeBtnPressed(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: StoryboardId.addShiftTypeVc) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: StoryboardId.addShiftTypeVc)
+            as? AddShiftTypeViewController {
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
+            vc.delegate = self
             present(vc, animated: true)
         }
     }
@@ -149,6 +169,16 @@ class MainViewController: UIViewController {
             }
         }
         return newDateData
+    }
+    
+}
+
+// MARK: - Add ShiftType Did Finish
+
+extension MainViewController: AddShiftTypeViewControllerDelegate {
+    
+    func didFinishShiftType(_ shiftType: ShiftType) {
+        shiftTypeData.append(shiftType)
     }
     
 }

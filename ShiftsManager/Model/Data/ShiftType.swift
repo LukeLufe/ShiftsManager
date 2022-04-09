@@ -18,13 +18,15 @@ public class ShiftType: NSManagedObject {
 
     @NSManaged public var id: String?
     @NSManaged public var name: String?
-    @NSManaged public var startHour: Int16
-    @NSManaged public var startMinute: Int16
-    @NSManaged public var endHour: Int16
-    @NSManaged public var endMinute: Int16
+    @NSManaged public var startTime: Date
+    @NSManaged public var endTime: Date
     @NSManaged public var restMinute: Int16
     @NSManaged public var hourlyRate: Float
     @NSManaged public var remark: String?
+    
+    public override func awakeFromInsert() {
+        id = UUID().uuidString
+    }
 
 }
 

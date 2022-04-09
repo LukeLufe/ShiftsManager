@@ -54,11 +54,13 @@
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VEf-iu-MUL"/>
                         <barButtonItem systemItem="edit" id="tVu-iz-94r"/>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="C4k-6e-uM2"/>
                         <barButtonItem systemItem="add" id="WO4-LD-YTV">
                             <connections>
                                 <action selector="addShiftTypeBtnPressed:" destination="Wga-gI-sLF" id="acm-x2-GLe"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="8JM-JY-LwZ"/>
                         <barButtonItem title="Today" id="Tf6-E2-gb0"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FAT-Ky-jMM"/>
                     </toolbarItems>

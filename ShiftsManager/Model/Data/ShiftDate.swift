@@ -19,6 +19,10 @@ public class ShiftDate: NSManagedObject {
     @NSManaged public var date: Date?
     @NSManaged public var id: String?
     @NSManaged public var typeId: String?
+    
+    public override func awakeFromInsert() {
+        id = UUID().uuidString
+    }
 
 }
 

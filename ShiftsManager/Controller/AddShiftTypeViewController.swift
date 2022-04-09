@@ -7,11 +7,18 @@
 
 import UIKit
 
+protocol AddShiftTypeViewControllerDelegate: AnyObject {
+    
+    func didFinishShiftType(_ shiftType: ShiftType)
+    
+}
+
 class AddShiftTypeViewController: UIViewController {
 
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var timePickerView: TimePickerView!
+    weak var delegate: AddShiftTypeViewControllerDelegate?
     
     private var addShiftTypeCellItems = [AddShiftTypeCellItem]()
     
@@ -41,8 +48,8 @@ class AddShiftTypeViewController: UIViewController {
         }
         let startTimeArray = addShiftTypeCellItems[1].value.split(separator: ":").map { String($0) }
         let endTimeArray = addShiftTypeCellItems[2].value.split(separator: ":").map { String($0) }
-        guard let startHour = Int16(startTimeArray[0]), let startMinute = Int16(startTimeArray[1]),
-              let endHour = Int16(endTimeArray[0]), let endMinute = Int16(endTimeArray[1]),
+        guard let startHour = Int(startTimeArray[0]), let startMinute = Int(startTimeArray[1]),
+              let endHour = Int(endTimeArray[0]), let endMinute = Int(endTimeArray[1]),
               let restMinute = Int16(addShiftTypeCellItems[3].value),
               let hourlyRate = Float(addShiftTypeCellItems[4].value) else {
             print("AddOkBtnPressed Error")
@@ -52,16 +59,14 @@ class AddShiftTypeViewController: UIViewController {
         let remark = addShiftTypeCellItems[5].value
         
         let shiftType = ShiftType(context: CoreDataManager.shared.context)
-        shiftType.id = UUID().uuidString
         shiftType.name = name
-        shiftType.startHour = startHour
-        shiftType.startMinute = startMinute
-        shiftType.endHour = endHour
-        shiftType.endMinute = endMinute
+        shiftType.startTime = Date.date(FromComponents: startHour, minute: startMinute)
+        shiftType.endTime = Date.date(FromComponents: endHour, minute: endMinute)
         shiftType.restMinute = restMinute
         shiftType.hourlyRate = hourlyRate
         shiftType.remark = remark
         CoreDataManager.shared.saveContext()
+        delegate?.didFinishShiftType(shiftType)
         dismiss(animated: true)
     }
     
