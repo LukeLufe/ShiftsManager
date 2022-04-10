@@ -53,6 +53,9 @@ extension MainViewController: UICollectionViewDataSource {
             cell.dateLabel.alpha = displayeDate.isPageMonth ? 1.0 : 0.2
             cell.dateView.backgroundColor = Date.confirmToday(date: displayeDate.date) ? .systemCyan : nil
             cell.dateLabel.textColor = Date.confirmToday(date: displayeDate.date) ? .white : cell.dateLabel.textColor
+            if Date.confirmToday(date: displayeDate.date) {
+                todayIndex = indexPath.row
+            }
         }
     }
     
@@ -77,7 +80,7 @@ extension MainViewController: UICollectionViewDelegate {
         collectionView.reloadData()
         
         // test
-        didSelectDate(didSelectItemAt: indexPath)
+//        didSelectDate(didSelectItemAt: indexPath)
     }
     
     func didSelectDate(didSelectItemAt indexPath: IndexPath) {

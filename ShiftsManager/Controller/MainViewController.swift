@@ -10,6 +10,10 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewBottomLayout: NSLayoutConstraint!
+    @IBOutlet weak var editShiftDateView: UIView!
+    @IBOutlet weak var editShiftDateViewHightLayout: NSLayoutConstraint!
+    lazy var editShiftDateViewHight: CGFloat = view.bounds.height * 0.2
     
     // MARK: - Date Data
     
@@ -18,7 +22,12 @@ class MainViewController: UIViewController {
     var pageMonth = Calendar.current.component(.month, from: Date())
     var oldPage = 1
     var beginScrollPage = false
-    var selectRowIndex: Int?
+    var selectRowIndex: Int? {
+        didSet {
+            drawLine()
+        }
+    }
+    var todayIndex: Int = 0
     let monthName = ["January", "February", "March", "April", "May", "June",
                      "July", "August", "September", "October", "November", "December"]
     let weekName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -68,6 +77,67 @@ class MainViewController: UIViewController {
             vc.modalTransitionStyle = .crossDissolve
             vc.delegate = self
             present(vc, animated: true)
+        }
+    }
+    
+    @IBAction func editShiftDateBtnPressed(_ sender: Any) {
+        let hight: CGFloat
+        if editShiftDateView.isHidden {
+            editShiftDateView.isHidden = false
+            hight = editShiftDateViewHight
+        } else {
+            editLineIsHidden = true
+            hight = 0
+        }
+        editShiftDateViewHightLayout.constant = hight
+        collectionViewBottomLayout.constant = -hight
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0.0) { [weak self] in
+            self?.view.layoutIfNeeded()
+        } completion: { [weak self] _ in
+            if self?.selectRowIndex == nil {
+                self?.selectRowIndex = self?.todayIndex
+            }
+            if hight == 0 {
+                self?.editShiftDateView.isHidden = true
+                self?.selectRowIndex = nil
+            } else {
+                self?.editLineIsHidden = false
+            }
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    var editLine: CAShapeLayer?
+    var editLineIsHidden = true {
+        didSet {
+            drawLine()
+        }
+    }
+    
+    func drawLine() {
+        editLine?.removeFromSuperlayer()
+        guard !editLineIsHidden, let selectRowIndex = selectRowIndex,
+        let cell = collectionView.cellForItem(at: IndexPath(row: selectRowIndex, section: 0)) else {
+            return
+        }
+        editLine = CAShapeLayer()
+        editLine?.strokeColor = UIColor.systemBlue.cgColor
+        editLine?.lineWidth = 3.0
+        editLine?.lineDashPattern = [3, 3]
+        let lineAnimation = CABasicAnimation(keyPath: "lineDashPhase")
+        lineAnimation.fromValue = editLine?.lineDashPattern?.reduce(0, { $0 + $1.intValue })
+        lineAnimation.toValue = 0
+        lineAnimation.duration = 0.3
+        lineAnimation.repeatCount = .infinity
+        editLine?.add(lineAnimation, forKey: nil)
+        let startPoint = CGPoint(x: editShiftDateView.frame.midX, y: editShiftDateView.frame.minY)
+        let cellRect = cell.convert(CGRect(x: 0.0, y: 0.0, width: cell.bounds.width, height: cell.bounds.height), to: view)
+        let endPoint = CGPoint(x: cellRect.midX, y: cellRect.maxY)
+        let path = CGMutablePath()
+        path.addLines(between: [startPoint, endPoint])
+        editLine?.path = path
+        if let editLine = editLine {
+            view.layer.addSublayer(editLine)
         }
     }
     
